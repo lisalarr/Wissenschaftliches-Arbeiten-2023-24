@@ -1,11 +1,11 @@
 # ************************************************
 # *          Wissenschaftliches Arbeiten         *
 # *              GitHub: Gruppe 12               *
+# *                  Aufgabe 1                   *
+# *        Antonia Koehr und Lisa Larrass        *
 # ************************************************
 
 titanic = read.csv("~/TU Dortmund/3. Semester/Wissenschaftliches Arbeiten/Gruppenarbeit/titanic.csv")
-
-# Aufgabe 1 
 
 # Anreden extrahieren
 titanic$Anrede = gsub("^.*,\\s*([A-Za-z]+)\\..*$", "\\1", titanic$Name)
