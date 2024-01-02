@@ -18,3 +18,5 @@ titanic = read.csv("~/TU Dortmund/3. Semester/Wissenschaftliches Arbeiten/Gruppe
 # „PassengerID“, „Name“, „Ticket“ und „Cabin“ entfernen
 
 # R-Skript und neuen Datensatz in Repository abspeichern 
+
+# test hallo aktualisiert sich hier was
