@@ -9,9 +9,9 @@
 #            Variablen des Datensatzes. 
 #            Berechnet werden: ---
 #
-# Input
+# Input:
 #
-# Output 
+# Output:
 
 metrStat = function() {
   
@@ -23,9 +23,9 @@ metrStat = function() {
 #           Berechnet werden: ---
 #
 # 
-# Input
+# Input:
 #
-# Output
+# Output:
 
 katStat = function() {
   
@@ -37,9 +37,9 @@ katStat = function() {
 #             Berechnet werden: ---
 #
 #
-# Input
+# Input:
 #
-# Output
+# Output:
 
 katBiStat = function() {
 
@@ -52,9 +52,9 @@ katBiStat = function() {
 #              Berechnet werden: ---
 #
 #
-# Input
+# Input:
 #
-# Output
+# Output:
 
 metrBiStat = function() {
   
@@ -65,9 +65,9 @@ metrBiStat = function() {
 #             Datensatzes. 
 #             Erstellt wird: --- 
 #
-# Input
+# Input:
 #
-# Output
+# Output:
 
 visualise = function() {
   
