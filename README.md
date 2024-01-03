@@ -9,7 +9,7 @@ Hat den Untergang der Titanic überlebt: ja = 1, nein = 0
 - Pclass (Ord.factor)  
 Klasse des Reisenden: 1 > 2 > 3 
 - Sex (Factor)  
-Geschlecht: 0 = male, 1 = female
+Geschlecht: male = 0, female = 1
 - Age (num)        
 Altern in Jahren beim Untergang: mittels mean imputiert
 - SibSp (int)        
