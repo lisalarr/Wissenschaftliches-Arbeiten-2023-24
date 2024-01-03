@@ -1,8 +1,8 @@
 # Wissenschaftliches Arbeiten 2023/24
 Abgabe von GitHub Gruppe 12
 
-Der zugrundeliegende Datensatz ist eine csv.Datei mit Informationen zu den Passagieren auf der Titanic.  
-Die Daten wurden zur Analyse vorverarbeitet, so dass der verwendete Datensatz die folgenden Variablen enthält: 
+Der zugrundeliegende Datensatz ist eine csv-Datei mit Informationen zu den Passagieren auf der Titanic.  
+Die Daten wurden zur Analyse vorbereitet, so dass der verwendete Datensatz die folgenden Variablen enthält: 
 
 - Survived (Factor)  
 Hat den Untergang der Titanic überlebt: ja = 1, nein = 0
