@@ -4,11 +4,11 @@ Abgabe von GitHub Gruppe 12
 Der zugrundeliegende Datensatz ist eine csv.Datei mit Informationen zu den Passagieren auf der Titanic. 
 Die Daten wurden zur Analye vorverarbeitet, so dass der zur Auswertung verwendete Datensatz wie folgt aussieht:  
 
-- Survived (Factor)
+- Survived (Factor)  
 Hat den Untergang der Titanic überlebt: ja = 1, nein = 0
-- Pclass (Ord.factor)
+- Pclass (Ord.factor)  
 Klasse des Reisenden: 1 > 2 > 3 
-- Sex (Factor)
+- Sex (Factor)  
 Geschlecht: 0 = male, 1 = female
 - Age (num)        
 Altern in Jahren beim Untergang: mittels mean imputiert
@@ -16,7 +16,7 @@ Altern in Jahren beim Untergang: mittels mean imputiert
 Anzahl an Geschwistern und Ehefrauen an Bord
 - Parch (int)        
 Anzahl an Eltern und Kinder an Bord
-- Fare (num)
+- Fare (num)  
 Ticketpreis
 - Embarked (Factor)     
 Zustiegshafen: Cherbourg = C, Queenstown = Q, Southampton = S
