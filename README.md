@@ -14,4 +14,4 @@ Die Daten wurden zur Analye vorverarbeitet, so dass der zur Auswertung verwendet
 - (Factor)     Embarked     (Zustiegshafen: Cherbourg = C, Queenstown = Q, Southampton = S)
 - (chr)        Title        (Anrede)
 - (num)        Bord         (Lage: Backbord = 0; Steuerbord = 1; beides = 2)
-- (int)        Deck         (Buchstabe der Kabinennumer:mehrere Decks = 0, A = 1, B = 2, C = 3, ...)
+- (int)        Deck         (Buchstabe der Kabinennumer: mehrere Decks = 0, A = 1, B = 2, C = 3, ...)
