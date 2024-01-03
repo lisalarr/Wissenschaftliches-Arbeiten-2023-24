@@ -16,5 +16,5 @@ Der zur Datenauswertung verwendete Datensatz enthält die Variablen:
 - Embarked -------------------------- Lisa (wie Codierung?)
 - (Anrede) -------------------------- Lisa
 - Bord (Backbord = 0; Steuerbord = 1; beides = 2)
-- Deck (mehrere Decks = 0, A = 1, B = 2, C = 2, ...)
+- Deck (mehrere Decks = 0, A = 1, B = 2, C = 3, ...)
 
