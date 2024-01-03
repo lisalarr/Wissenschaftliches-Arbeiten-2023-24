@@ -6,6 +6,7 @@
 # ************************************************
 titanic = read.csv("titanic.csv")
 
+
 # Anreden extrahieren
 titanic$Anrede = gsub("^.*,\\s*([A-Za-z]+)\\..*$", "\\1", titanic$Name)
 
