@@ -83,4 +83,4 @@ titanic = variableDeck(titanic)
 titanic[ , c("PassengerId", "Name", "Ticket", "Cabin")] = list(NULL)
 
 # Aktualisierten Datensatz fuer GitHub speichern
-save(titanic, file = "titanic_new.csv")
+save(titanic, file = "titanic_new.RData")
