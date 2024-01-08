@@ -3,6 +3,8 @@
 # *              GitHub: Gruppe 12               *
 # *          Aufgabe 2 (Main Funktionen)         *
 # ************************************************
+library(moments)
+source("Aufgabe2_2.R")
 
 # (i)
 # metrStat - die Funktion berechnet deskriptive Statistiken fuer metrische 
@@ -65,16 +67,29 @@ katStat = function(x) {
 # (iii)
 # katBiStat - die Funktion berechnet deskriptive bivariate Statistiken fuer den 
 #             Zusammenhang kategorialer Variablen des Datensatzes.
-#             Berechnet werden: ---
+#             Berechnet werden der Chi-Quadrat-Test und Cramers V.
 #
 #
-# Input:
+# Input: Zwei kategoriale Variable x und y
 #
-# Output:
+# Output: Eine Liste mit den oben genannten deskriptiven Statistiken. 
 
-katBiStat = function() {
-
+katBiStat = function(x, y) {
+  
+  if(all(sapply(list(x,y), function(col) is.factor(col) || is.character(col)))){
+    stats = list(chisq = chisq.test(x,y),
+                 # Hilfsfunktion in Aufgabe2_2.R programmiert
+                 cramersv = cramersV(x, y),
+                 Interpretation = "Wertebereich von Cramers V: 0 (keinen stat. Zsh.) bis 1 (perfekten stat. Zsh.")
+    return(stats)
+    
+  }
+  else print("Die Variablen sind nicht kategorial.")
 }
+
+# Test
+#katBiStat(titanic$Survived,titanic$Age)
+#katBiStat(titanic$Survived, titanic$Pclass)
 
 # (iv)
 # metrBiStat - die Funktion berechnet deskriptive bivariate Statistiken fuer den 
