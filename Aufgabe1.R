@@ -60,7 +60,7 @@ variableCabin = function(data) {
 titanic = variableCabin(titanic)
 
 # Deck (vorangehender Buchstabe)
-# Mehrere Decks = 0, A = 1, B = 2, C = 2, ...
+# Mehrere Decks = 0, A = 1, B = 2, C = 3, ...
 variableDeck = function(data) {
   Deck = data$Cabin
   Deck[which(Deck == "")] = NA
