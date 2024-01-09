@@ -4,6 +4,9 @@
 # *          Aufgabe 2 (Main Funktionen)         *
 # ************************************************
 library(moments)
+library(ggplot2)
+setwd("D:/Dokumente/TU Dortmund/3. Semester/wissenschaftlichesArbeiten/Github/Wissenschaftliches-Arbeiten-2023-24/")
+load("titanic_new.RData")
 source("Aufgabe2_2.R")
 
 # (i)
@@ -92,32 +95,71 @@ katBiStat = function(x, y) {
 #katBiStat(titanic$Survived, titanic$Pclass)
 
 # (iv)
-# metrBiStat - die Funktion berechnet deskriptive bivariate Statistiken fuer den 
-#              Zusammenhang einer metrischen und dichotomen Variable des Daten-
-#              satzes.
-#              Berechnet werden: ---
+# metrBiStat - die Funktion berechnet verschiedene deskriptive bivariate 
+#              Statistiken fuer den Zusammenhang einer metrischen und dichotomen 
+#              Variable des Datensatzes.
 #
+# Input:       metric:      ein numerischer, metrischer Vektor
+#              dichotomous: ein Vektor mit zwei Auspraegungen
 #
-# Input:
-#
-# Output:
+# Output:      eine benannte Liste mit den Listeneintraegen
+#              mean, variance, standard deviation, skweness, kurtosis, minimum, 
+#              maximum, median
 
-metrBiStat = function() {
+metrBiStat = function(metric, dichotomous) {
+  stopifnot(length(unique(dichotomous)) == 2, 
+            is.numeric(metric))
   
+  mean_res <- tapply(metric, dichotomous, mean)
+  var_res <- tapply(metric, dichotomous, var)
+  sd_res <- tapply(metric, dichotomous, sd)
+  skewness_res <- tapply(metric, dichotomous, skewness)
+  kurtosis_res <- tapply(metric, dichotomous, kurtosis)
+  min_res <- tapply(metric, dichotomous, min)
+  max_res <- tapply(metric, dichotomous, max)
+  median_res <- tapply(metric, dichotomous, median)
+  
+  list_names <- c("mean", "variance", "standard deviation", "skewness", 
+                  "kurtosis", "minimum", "maximum", "median")
+  res_list <- list(mean_res, var_res, sd_res, skewness_res, kurtosis_res,
+                   min_res, max_res, median_res)
+  
+  return(setNames(res_list, list_names))
 }
+#metrBiStat(titanic$Fare, titanic$Sex)
 
 # (v)
-# visualise - die Funktion erstellt eine Visualisierung von drei/vier Variablen des 
-#             Datensatzes. 
-#             Erstellt wird: --- 
+# visualise - die Funktion kann Balkendiagramm fuer alle kategorialen Variablen
+#             Variablen erstellen
 #
-# Input:
+# Input:    - die auszuwertende Variable
 #
-# Output:
+# Output:   - ein Balkendiagramm
 
-visualise = function() {
+visualise = function(data) {
+  stopifnot(!is.numeric(data))
   
+  allVec <- unique(data)
+  
+  getQuantity <- function(i){
+    length(data[which(data == allVec[i])])
+  }
+  quantity <- vapply(1:length(allVec), getQuantity, FUN.VALUE = 1)
+  save <- cbind(allVec, quantity)
+  save <- save[order(save[, "quantity"]), ]
+  upper_ylim <- ceiling(max(quantity)/100) * 100
+  
+  barplot(save[, "quantity"], 
+          col = 
+            colorRampPalette(colors = c("lightblue", "blue"))(length(quantity)), 
+          ylim = c(0, upper_ylim),
+          names.arg = save[, "allVec"], 
+          main = paste("Barchart", deparse(substitute(data))))
+  
+  grid(nx = 0, ny = (upper_ylim) 
+       / ((upper_ylim) / 10))
 }
+#visualise(titanic$Sex)
 
 # (vi)
 # ...  
