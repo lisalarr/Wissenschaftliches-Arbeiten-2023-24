@@ -5,9 +5,6 @@
 # ************************************************
 library(moments)
 library(ggplot2)
-setwd("D:/Dokumente/TU Dortmund/3. Semester/wissenschaftlichesArbeiten/Github/Wissenschaftliches-Arbeiten-2023-24/")
-load("titanic_new.RData")
-source("Aufgabe2_2.R")
 
 # (i)
 # metrStat - die Funktion berechnet deskriptive Statistiken fuer metrische 
@@ -159,7 +156,7 @@ visualise = function(data) {
   grid(nx = 0, ny = (upper_ylim) 
        / ((upper_ylim) / 10))
 }
-#visualise(titanic$Sex)
+visualise(titanic$Sex)
 
 # (vi)
 # ...  
