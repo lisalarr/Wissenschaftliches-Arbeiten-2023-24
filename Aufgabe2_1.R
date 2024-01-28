@@ -36,7 +36,6 @@ metrStat = function(x, na.rm = TRUE) {
     print("Die Variable ist nicht metrisch.")
   }
 }
-
 # Test
 # metrStat(titanic$Survived)
 # Wie erwartet wird ausgegeben, dass die Variable nicht metrisch ist.
@@ -146,7 +145,7 @@ metrBiStat = function(metric, dichotomous) {
 # Output:     ein Balkendiagramm
 
 visualise = function(data) {
-  stopifnot(!is.numeric(data))
+  stopifnot(is.factor(data) | is.integer(data))
   
   allVec = unique(data)
   
@@ -169,7 +168,7 @@ visualise = function(data) {
 }
 
 # Test
-# visualise(titanic$Sex)
+# visualise(titanic$Deck)
 
 # (vi)
 
@@ -254,3 +253,4 @@ extraMultivariate = function(data, variable1, variable2, colorVar) {
 
 # Test
 # extraMultivariate(titanic, "Age", "Fare", "Survived")
+
