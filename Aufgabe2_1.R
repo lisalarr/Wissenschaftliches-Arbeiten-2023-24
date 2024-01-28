@@ -112,6 +112,7 @@ katBiStat = function(x, y) {
 
 metrBiStat = function(metric, dichotomous) {
   stopifnot(length(unique(dichotomous)) == 2, 
+            (is.integer(dichotomous) | is.factor(dichotomous)),
             is.numeric(metric))
   
   mean_res = tapply(metric, dichotomous, mean)
@@ -130,7 +131,6 @@ metrBiStat = function(metric, dichotomous) {
   
   return(setNames(res_list, list_names))
 }
-
 # Test
 # metrBiStat(titanic$Title, titanic$Bord)
 # Wie erwartet koennen keine Statistiken erstellt werden.
@@ -173,7 +173,7 @@ visualise = function(data) {
 
 # (vi)
 
-# extraUnivariate - generierte eine kombinierte Visualisierun, um den Datensatz
+# extraUnivariate - generierte eine kombinierte Visualisierung, um den Datensatz
 #                   univariat zu betrachten. Dabei werden zwei Plots erstellt.
 #                   Ein Boxplot und die Dichte.
 #
