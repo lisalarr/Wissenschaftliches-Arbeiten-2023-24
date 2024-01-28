@@ -8,6 +8,12 @@ titanic = read.csv("titanic.csv")
 
 # Anreden extrahieren
 titanic$Title = gsub("^.*,\\s*([A-Za-z]+)\\..*$", "\\1", titanic$Name)
+# "Miss" und "Mlle" auf "Ms" aendern
+titanic$Title[which(titanic$Title %in% list("Miss", "Mlle"))] = "Ms"
+# "Mme" auf "Mrs" aendern
+titanic$Title[which(titanic$Title == "Mme")] = "Mrs"
+# Umkodieren zu Factor (mit 14 Auspraegungen) 
+titanic$Title = as.factor(titanic$Title)
 
 # Variablen zu Factor umkodieren
 # "Survived" mit ja = 1, nein = 2 
@@ -84,4 +90,3 @@ titanic[ , c("PassengerId", "Name", "Ticket", "Cabin")] = list(NULL)
 
 # Aktualisierten Datensatz fuer GitHub speichern
 save(titanic, file = "titanic_new.RData")
-
