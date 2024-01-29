@@ -36,7 +36,6 @@ metrStat = function(x, na.rm = TRUE) {
     print("Die Variable ist nicht metrisch.")
   }
 }
-
 # Test
 # metrStat(titanic$Survived)
 # Wie erwartet wird ausgegeben, dass die Variable nicht metrisch ist.
@@ -112,6 +111,7 @@ katBiStat = function(x, y) {
 
 metrBiStat = function(metric, dichotomous) {
   stopifnot(length(unique(dichotomous)) == 2, 
+            (is.integer(dichotomous) | is.factor(dichotomous)),
             is.numeric(metric))
   
   mean_res = tapply(metric, dichotomous, mean)
@@ -130,7 +130,6 @@ metrBiStat = function(metric, dichotomous) {
   
   return(setNames(res_list, list_names))
 }
-
 # Test
 # metrBiStat(titanic$Title, titanic$Bord)
 # Wie erwartet koennen keine Statistiken erstellt werden.
@@ -146,7 +145,7 @@ metrBiStat = function(metric, dichotomous) {
 # Output:     ein Balkendiagramm
 
 visualise = function(data) {
-  stopifnot(!is.numeric(data))
+  stopifnot(is.factor(data) | is.integer(data))
   
   allVec = unique(data)
   
@@ -169,7 +168,7 @@ visualise = function(data) {
 }
 
 # Test
-# visualise(titanic$Sex)
+# visualise(titanic$Deck)
 
 # (vi)
 
@@ -261,3 +260,4 @@ extraMultivariate = function(data, variable1, variable2, colorVar) {
 
 # Test
 # extraMultivariate(titanic, "Age", "Fare", "Survived")
+
