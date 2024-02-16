@@ -81,7 +81,8 @@ katStat = function(x) {
 
 katBiStat = function(x, y) {
   if(all(sapply(list(x, y), function(col) is.factor(col) || is.character(col)))){
-    stats = list(chisq = chisq.test(x, y),
+     stats = list(round(100*prop.table(table(x,y), margin = 1),2),
+      chisq = chisq.test(x, y),
                  # Hilfsfunktion in Aufgabe2_2.R programmiert
                  cramersv = cramersV(x, y),
                  Interpretation = "Wertebereich von Cramers V: 0 (keinen stat. Zsh.) bis 1 (perfekten stat. Zsh.")
