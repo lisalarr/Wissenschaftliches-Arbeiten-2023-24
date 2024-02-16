@@ -4,6 +4,7 @@
 # *                  Aufgabe 1                   *
 # *        Antonia Koehr und Lisa Larrass        *
 # ************************************************
+
 titanic = read.csv("titanic.csv")
 
 # Anreden extrahieren
@@ -59,7 +60,7 @@ variableCabin = function(data) {
   Bord[which(Bord != 1000)] = Bord[which(Bord != 1000)] %% 2
   Bord[which(Bord == 1000)] = 2
   
-  data = cbind(data, Bord = as.integer(Bord))
+  data = cbind(data, Bord = as.factor(Bord))
   return(data)
 }
 titanic = variableCabin(titanic)
@@ -79,11 +80,10 @@ variableDeck = function(data) {
   
   Deck[which(nchar(Deck) > 1)] = 0
   Deck = as.integer(Deck)
-  data = cbind(data, Deck)
+  data = cbind(data, Deck = as.factor(Deck))
   return(data)
 }
 titanic = variableDeck(titanic)
-
 
 # "PassengerID", "Name", "Ticket" und "Cabin" entfernen
 titanic[ , c("PassengerId", "Name", "Ticket", "Cabin")] = list(NULL)
