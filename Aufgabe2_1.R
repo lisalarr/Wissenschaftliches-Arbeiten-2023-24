@@ -36,7 +36,6 @@ metrStat = function(x, na.rm = TRUE) {
     print("Die Variable ist nicht metrisch.")
   }
 }
-
 # Test
 # metrStat(titanic$Survived)
 # Wie erwartet wird ausgegeben, dass die Variable nicht metrisch ist.
@@ -82,7 +81,8 @@ katStat = function(x) {
 
 katBiStat = function(x, y) {
   if(all(sapply(list(x, y), function(col) is.factor(col) || is.character(col)))){
-    stats = list(chisq = chisq.test(x, y),
+     stats = list(round(100*prop.table(table(x,y), margin = 1),2),
+      chisq = chisq.test(x, y),
                  # Hilfsfunktion in Aufgabe2_2.R programmiert
                  cramersv = cramersV(x, y),
                  Interpretation = "Wertebereich von Cramers V: 0 (keinen stat. Zsh.) bis 1 (perfekten stat. Zsh.")
@@ -146,7 +146,7 @@ metrBiStat = function(metric, dichotomous) {
 # Output:     ein Balkendiagramm
 
 visualise = function(data) {
-  stopifnot(!is.numeric(data))
+  stopifnot(is.factor(data) | is.integer(data))
   
   allVec = unique(data)
   
@@ -169,13 +169,13 @@ visualise = function(data) {
 }
 
 # Test
-# visualise(titanic$Sex)
+# visualise(titanic$Deck)
 
 # (vi)
 
 # extraUnivariate - generierte eine kombinierte Visualisierung, um den Datensatz
 #                   univariat zu betrachten. Dabei werden zwei Plots erstellt.
-#                   Ein Boxplot und die Dichte.
+#                   Ein Boxplot und ein Histogramm.
 #
 # Input:     data - ein Data Frame (die zu analysierenden Daten)
 #        variable - eine Variable (zu analyiseren)
@@ -186,17 +186,19 @@ extraUnivariate = function(data, variable) {
   stopifnot(!is.null(data) & nrow(data) > 0, 
             is.character(variable), variable %in% names(data))
   
+  # Boxplot der Variable
   boxplot = ggplot(data, aes(y = !!sym(variable))) +
     geom_boxplot(fill = "lightgreen", alpha = 0.7) +
     labs(title = paste("Boxplot for", variable), 
          y = variable)
   
-  densityPlot = ggplot(data, aes(x = !!sym(variable))) +
-    geom_density(fill = "salmon", alpha = 0.7) +
-    labs(title = paste("Density Estimate for", variable),
-         x = variable, y = "Density")
+  # Histogramm der Variable
+  histogram = ggplot(data, aes(x = !!sym(variable))) +
+    geom_histogram(fill = "salmon", alpha = 0.7) +
+    labs(title = paste("Histogram for", variable),
+         x = variable, y = "Count")
   
-  print(plot_grid(boxplot, densityPlot, ncol = 2))
+  print(plot_grid(boxplot, histogram, ncol = 2))
 }
 
 # Test
@@ -204,8 +206,8 @@ extraUnivariate = function(data, variable) {
 
 # extraMultivariate - generiert eine kombinierte Visualisierung, um den Daten-
 #                     satz multivariat zu analysieren. Dabei werden vier Plots
-#                     erstellt. Ein gestapeltes Histogramm, die Dichtefunktionen,
-#                     Boxplots und Scatterplots.
+#                     erstellt. Ein gestapeltes Histogramm, Boxplots und ein 
+#                     Scatterplot mit linearer Regression.
 #
 # Input:       data - ein Data Frame (die zu analysierenden Daten)
 #         variable1 - eine Variable (zu analyiseren)
@@ -219,38 +221,44 @@ extraMultivariate = function(data, variable1, variable2, colorVar) {
             !is.numeric(variable1), !is.numeric(variable2),
             length(variable1) == length(variable2))
   
+  # Gestapeltes Histogramm der Variablen 
   histogram = ggplot(data, aes(x = !!sym(variable1), 
                                fill = !!sym(colorVar))) +
     geom_histogram(position = "stack", bins = 30, alpha = 0.7) +
     labs(title = paste("Stacked Histogram for", variable1),
-         x = variable1, y = "Count", fill = colorVar)
+         x = variable1, y = "Count", 
+         fill = colorVar)
   
-  densityPlot = ggplot(data, aes(x = !!sym(variable1), 
-                                  fill = !!sym(colorVar))) +
-    geom_density(alpha = 0.7) +
-    labs(title = paste("Density Estimate for", variable1),
-         x = variable1, y = "Density", fill = colorVar)
-  
+  # Nebeneinanderstellung der Boxplots
   boxplots = ggplot(data, aes(x = !!sym(variable2), 
                               y = !!sym(variable1), 
                               fill = !!sym(colorVar))) +
     geom_boxplot() +
     labs(title = paste("Boxplots for", variable1, "and", variable2),
-         x = variable2, y = variable1, fill = colorVar)
+         x = variable2, y = variable1, 
+         fill = colorVar)
   
-  scatterplot = ggplot(data, aes(x = !!sym(variable1), 
-                                 y = !!sym(variable2), 
-                                 color = !!sym(colorVar))) +
+  # Scatterplot mit linearen Regressionsgeraden
+  regression_model = lm(data[[variable2]] ~ data[[variable1]], data = data)
+  regression_summary = summary(regression_model)
+  regression_eqn = paste("y =", round(regression_summary$coefficients[2], 2), 
+                         "x +", round(regression_summary$coefficients[1], 2))
+  regression_plot = ggplot(data, aes(x = !!sym(variable1), 
+                                     y = !!sym(variable2), 
+                                     color = !!sym(colorVar))) +
     geom_point(alpha = 0.7) +
-    geom_hline(yintercept = mean(data[[variable2]], na.rm = TRUE)) +
-    geom_text(aes(label = "Mean"), x = 70, 
-              y = mean(data[[variable2]], na.rm = TRUE), 
-              color = "black", vjust = -0.5, hjust = -0.5) +
-    labs(title = paste("Scatterplot for", variable1, "and", variable2),
-         x = variable1, y = variable2, color = colorVar)
+    geom_smooth(method = "lm", se = FALSE) +  
+    geom_text(x = max(data[[variable1]]), 
+              y = min(data[[variable2]]),
+              label = regression_eqn, 
+              hjust = 1, vjust = 0) +
+    labs(title = paste("Linear Regression for", variable1, "and", variable2),
+         x = variable1, y = variable2, 
+         color = colorVar)
   
-  print(plot_grid(histogram, densityPlot, boxplots, scatterplot, ncol = 2))
+  print(plot_grid(histogram, regression_plot, boxplots, ncol = 2))
 }
 
 # Test
 # extraMultivariate(titanic, "Age", "Fare", "Survived")
+
