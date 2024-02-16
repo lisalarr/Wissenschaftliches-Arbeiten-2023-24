@@ -4,7 +4,6 @@
 # *                  Aufgabe 1                   *
 # *        Antonia Koehr und Lisa Larrass        *
 # ************************************************
-
 titanic = read.csv("titanic.csv")
 
 # Anreden extrahieren
