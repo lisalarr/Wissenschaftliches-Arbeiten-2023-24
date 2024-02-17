@@ -8,6 +8,9 @@ library(moments) # fuer die Berechnung von Momenten und deskriptiven Statistiken
 library(ggplot2) # fuer das erweiterte Plotten ueber base-R hinweg
 library(cowplot) # fuer die Grid-Darstellung in (vi) 
 
+# Hilfsfunktionen laden
+source("Aufgabe2_2.R")
+
 # (i)
 
 # metrStat - die Funktion berechnet deskriptive Statistiken fuer metrische 
