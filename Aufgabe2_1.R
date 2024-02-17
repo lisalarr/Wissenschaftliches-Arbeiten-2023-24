@@ -27,7 +27,7 @@ metrStat = function(x, na.rm = TRUE) {
     stats = list(Mittelwert = mean(x),
                  Varianz = var(x),
                  SD = sd(x),
-                 Summary = summary(x),
+                 Quartile = quantile(x),
                  NAs = sum(is.na(x)),
                  Schiefe = skewness(x),
                  Woelbung = kurtosis(x))
