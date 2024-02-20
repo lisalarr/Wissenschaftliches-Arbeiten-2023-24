@@ -158,6 +158,7 @@ visualise = function(data) {
     length(data[which(data == allVec[i])])
   }
   quantity = vapply(1:length(allVec), getQuantity, FUN.VALUE = 1)
+  allVec = as.numeric(as.character(allVec))
   save = cbind(allVec, quantity)
   save = save[order(save[, "quantity"]), ]
   upper_ylim = ceiling(max(quantity)/100) * 100
