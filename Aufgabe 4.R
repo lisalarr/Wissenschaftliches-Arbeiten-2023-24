@@ -64,3 +64,122 @@ katStat(titanic$Title)
 # auch noch mehr vertreten. Alle anderen Titel sind nur mit unter 5% vertreten.
 
 
+### Anzahl Geschwister und Ehefrauen
+metrStat(titanic$SibSp)
+# Die Spanne betraegt zwischen 0 und 8 Geschwistern bzw. Ehefrauen. Der Mittel-
+# wert betraegt 0.5. Der Median ist sogar 0. Also haben sehr viele keine 
+# Geschwister oder Ehefrauen auf dem Schiff. Da das 3. Quartil 1 betraegt, zeigt
+# sich, dass mindestens 75% aller Menschen keine bis eine auf der Titanic haben. 
+# Hier liegt eine staerkere rechtsschiefe als beim Alter vor. 
+# Außerdem haben wir eine sehr spitze Verteilung der Daten.
+
+extraUnivariate(titanic,"SibSp")
+# Die Grafik stellt die Verteilung der Daten noch einmal deutlicher dar.
+
+
+### Anzahl an Eltern und Kinder
+metrStat(titanic$Parch)
+# Diese sieht sehr aehnlich zu der Verteilung von der Anzahl der Geschwister und
+# Ehefrauen aus. Die Spanne ist von 0 bis 6. Hingegen haben mindestens 75% 
+# keine Eltern oder Kinder, die ebenso auf dem Schiff waren.
+
+extraUnivariate(titanic,"Parch")
+# Die Grafik stellt die Verteilung der Daten noch einmal deutlicher dar.
+
+# --> Aus der deskriptiven Analyse der Anzahl an Geschwistern und Ehefrauen und der 
+# Anzahl an Eltern und Kinder kann man darauf schließen, dass viele ohne Familie
+# gereist sind.
+
+
+### Ticketpreis
+metrStat(titanic$Fare)
+# Im Durchschnitt hat das Ticket 32.2$ gekostet. Dabei gibt es aber auch eine 
+# große Abweichung (SD = 49.69). Dies zeigt sich auch in der Spanne von 0 bis
+# 512.33$. Der Mittelwert und der Median ist mit 14.45$ sehr gering. Dies koennte 
+# daran liegen, dass sehr viele Passagiere der 3. Klasse angehoert haben und diese 
+# Tickets guenstiger waren. -> Analyse bei "bivariater Zusammenhang"
+# Auch hier liegt eine rechtsschiefe, spitze Verteilung der Daten vor.
+
+extraUnivariate(titanic,"Fare")
+# Die Grafik stellt die Verteilung der Daten noch einmal deutlicher dar.
+
+
+### Zustiegshafen
+katStat(titanic$Embarked)
+# Die meisten Passagiere sind in Southhampton zugestiegen (72.28%). Dazu im 
+# Vergleich sind wenige in Cherbourg (18.86%) und Queenstown (8.64%) 
+# zugestiegen. Bei zwei Passagieren ist der Zustiegshafen nicht bekannt. 
+
+
+### Bord
+katStat(titanic$Bord)
+# Knapp ueber der Haelfte aller Passagiere haben auf der Backbordseite gewohnt (54%).
+# 45% hatten eine Kabine auf der Steuerbordseite. Zwei Passagiere hatten ein
+# Kabine auf beiden Seiten.
+visualise(titanic$Bord)
+# Die Grafik stellt den Unterschied noch einmal deutlicher dar.
+
+
+### Deck
+katStat(titanic$Deck)
+# Die meisten Passagiere haben auf Deck C gelebt (28.92%), gefolgt von Deck B
+# mit 23.04%. Die Decks D (16.18%) und E (15.69%) waren auch noch belebter.
+# 7.35% Haben auf dem obersten Deck A gewohnt. Auf den untersten beiden jeweils
+# unter 5% aller Passagiere. Es gab aber auch fuenf Passagiere (2.45%), die auf 
+# mehreren Decks waren.
+visualise(titanic$Deck)
+# Die Grafik stellt den Unterschied noch einmal deutlicher dar.
+
+########################## Bivariater Zusammenhang  ############################
+
+
+# -->  Ticketpreis und Klasse der Reisenden
+
+# Da Ticketpreis metrisch, aber Klasse nicht dichotom ist, kann die Funktion 
+# "metrBiStat" nicht verwendet werden. Deswegen wurde hier gruppierte Boxplots 
+# betrachtet, um den Unterschied in den Ticketpreisen zwischen den Klassen zu 
+# analysieren. 
+
+boxplot(titanic$Fare ~ titanic$Pclass)
+
+# Wie erwartet, bezahlten Reisende der 1. Klasse deutlich mehr als die der 2. 
+# und 3. Klasse. Die Spanne in der 2. und 3. Klasse ist aehnlich zueinander. 
+# Bemerkenswert ist jedoch dass es einige Personen der 3. Klasse deutlich mehr 
+# als die Mehrheit dieser Klasse bezahlten, was sich in den vielen Ausreißern 
+# zeigt. Außerdem zeigt sich, dass in der ersten Klasse ein Ausreißer mit circa 
+# 500$ gibt. Die naechsten Ausreißer liegen erst wieder zwischen 200 und 300$. 
+
+
+# -->  Klasse der Reisenden und Deck
+
+katBiStat(titanic$Pclass, titanic$Deck)
+
+# Passagiere der ersten Klasse waren auf den Decks A bis E untergebracht, 
+# Passagiere der 2. Klasse auf den Decks D bis F und der 3. Klasse auf E bis G. 
+# Außerdem sind 33.33% der Passagiere der dritten KLasse auf mehreren Decks 
+# verteilt. Dies trifft auch auf 0.57% der 1. Klasse zu.
+
+
+# --> Analyse des Zusammenhanges zwischen Ueberlebensstatistiken und anderen
+# moegliche Einflussfaktoren wie Geschlecht, Klasse des Reisenden, Alter 
+# und Ticketpreis. 
+
+### Geschlecht
+katBiStat(titanic$Survived, titanic$Sex)
+
+# Die Kreuztabelle zeigt, dass die meisten Verstorbenen maennlich (85,25%) und 
+# die meisten der Ueberlebenden weiblich waren. 
+# Diese Beobachtung wird durch die signifikante, positive mittlere Korrelation 
+# (rho = 0,55, p <0,01) zwischen Geschlecht und ueberleben unterstuetzt.
+
+# -> Das Geschlecht scheint in einem Zusammenhang mit dem Ueberleben zu stehen.
+
+### Klasse der Reisenden
+katBiStat(titanic$Survived, titanic$Pclass)
+
+# Die Kreuztabellierung zeigt, dass die meisten der Verstorbenen der Klasse 3 
+# angehoerten. Fast 40 % der Ueberlebenden gehoerten der Klasse 1 an. 
+# Diese Beobachtung wurde durch die signifikante, positive Korrelation 
+# (rho = 0,34, p < 0,01) zwischen Klasse und Ueberleben bestaetigt.
+
+# -> Die Klasser der Reisenden scheint in einem Zusammenhang mit dem Ueberleben zu stehen.
