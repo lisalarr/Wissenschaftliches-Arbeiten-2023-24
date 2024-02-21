@@ -126,11 +126,12 @@ metrBiStat = function(metric, dichotomous) {
   min_res = tapply(metric, dichotomous, min)
   max_res = tapply(metric, dichotomous, max)
   median_res = tapply(metric, dichotomous, median)
+  test_res = t.test(metric ~ dichotomous)
   
   list_names = c("mean", "variance", "standard deviation", "skewness", 
-                  "kurtosis", "minimum", "maximum", "median")
+                  "kurtosis", "minimum", "maximum", "median", "t-Test")
   res_list = list(mean_res, var_res, sd_res, skewness_res, kurtosis_res,
-                   min_res, max_res, median_res)
+                   min_res, max_res, median_res, test_res)
   
   return(setNames(res_list, list_names))
 }
@@ -157,6 +158,7 @@ visualise = function(data) {
     length(data[which(data == allVec[i])])
   }
   quantity = vapply(1:length(allVec), getQuantity, FUN.VALUE = 1)
+  allVec = as.numeric(as.character(allVec))
   save = cbind(allVec, quantity)
   save = save[order(save[, "quantity"]), ]
   upper_ylim = ceiling(max(quantity)/100) * 100
