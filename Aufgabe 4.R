@@ -183,3 +183,61 @@ katBiStat(titanic$Survived, titanic$Pclass)
 # (rho = 0,34, p < 0,01) zwischen Klasse und Ueberleben bestaetigt.
 
 # -> Die Klasser der Reisenden scheint in einem Zusammenhang mit dem Ueberleben zu stehen.
+
+
+### Alter der Reisenden
+metrBiStat(titanic$Age, titanic$Survived)
+
+# Das Mindestalter der Ueberlebenden liegt bei 1, das der Verstorbenen bei 0. 
+# Das Hoechstalter der Ueberlebenden liegt bei 74, das der Verstorbenen bei 80. 
+# Das Durchschnittsalter der Ueberlebenden (SD = 13,26) und der Verstorbenen 
+# (SD = 13,27) betraegt 30 Jahre mit einer aehnlichen Streuung. 
+
+# Der t-Test zeigt, dass es keinen signifikanten Altersunterschied zwischen den 
+# beiden Gruppen von Reisenden gibt, was die deskriptiven Statistiken widerspiegelt.
+
+# -> Das Alter der Reisenden scheint nicht in einem Zusammenhang zum Ueberleben
+# zu stehen.
+
+
+### Ticketpreis
+metrBiStat(titanic$Fare, titanic$Survived)
+
+# Der Durchschnittspreis der Verstorbenen liegt bei 22,12 $ und der 
+# Durchschnittspreis der ueberlebenden bei 48,39 $. Die Preisspanne der ueberlebenden
+# betraegt zwischen 0 bis 512.33$, die der Verstorbenen geht von 0 bis 263$.
+# Die Preise der Ueberlebenden schwanken jedoch deutlich staerker (SD = 66,60$) 
+# als die der Verstorbenen (SD = 31,39$). Daher ist es sinnvoller, den Median zu
+# betrachten, der bei den Verstorbenen 10,5$ und bei den Ueberlebenden 26$ betraegt.
+
+# -> Diese Beobachtung deutet darauf hin, dass die Ueberlebenden deutlich 
+# mehr bezahlten als die Verstorbenen. Dies passt auch mit der Korrelation zwischen 
+# Klasse und Ueberleben zusammen. 
+
+# Der signifikante t-Test bestaetigt die deskriptive Beobachtung. 
+
+### Ticketpreis und Alter im Zusammenhang mit Ueberleben
+
+extraMultivariate(titanic, "Age", "Fare", "Survived")
+
+# Das Histogramm zeigt, dass die Altersverteilung zwischen den Ueberlebenden und 
+# den Verstorbenen gleich ist. Dies deckt sich mit der vorhherigen Analyse.
+# Die lineare Regression zeigt, dass das Alter und der Ticketpreis in keinem 
+# Zusammenhang zueinander steht.
+# Der Boxplot bestaetigt die vorherige Analyse fuer das Alter.
+
+extraMultivariate(titanic, "Fare", "Age", "Survived")
+
+# Das Histogramm fuer Tickpreis bzw. der Boxplot fuer den Ticketpreis in 
+# Zusammenhang mit dem Überleben bestaetigt ebenfalls die vorherige Analyse.
+
+### Deck
+
+katBiStat(titanic$Survived, titanic$Deck)
+
+# Die meisten ueberlebenden befanden sich auf den Decks B-E. Die meisten 
+# Verstorbenen waren auf Deck C (35.29%). Auf den Decks A,B,D und E sind auch 
+# ueber 10% verstorben. Kein klarer Zusammenhang zwischen Ueberleben und Decks 
+# ist zu beobachten. Das koennte daran liegen, dass die Klassen ueber viele Decks
+# verteilt sind. 
+
