@@ -1,11 +1,13 @@
 # ************************************************
 # *          Wissenschaftliches Arbeiten         *
 # *              GitHub: Gruppe 12               *
+# *                                              *
 # *             Gruppenmitglieder:               *
 # *             - Inken Veips (I-Veips)          *
 # *             - Sam Fujarski (fuwatson88)      *
 # *             - Lisa Larrass (lisalarr)        *
 # *             - Antonia Koehr (SpotAnti)       *
+# *                                              *
 # *          Aufgabe 2 (Main Funktionen)         *
 # *               bearbeitet von allen           *
 # ************************************************
@@ -241,13 +243,16 @@ extraMultivariate = function(data, variable1, variable2, colorVar) {
          fill = colorVar)
   
   # Nebeneinanderstellung der Boxplots
-  boxplots = ggplot(data, aes(x = !!sym(variable2), 
-                              y = !!sym(variable1), 
-                              fill = !!sym(colorVar))) +
-    geom_boxplot() +
-    labs(title = paste("Boxplots for", variable1, "and", variable2),
-         x = variable2, y = variable1, 
-         fill = colorVar)
+  # Beim Bearbeiten von Aufgabe 4 ist aufgefallen, dass es durch diese Funktion  
+  # zu einer redundanten Darstellung kommt, die keinen Mehrwert fuer die Analyse
+  # bietet, weswegen der folgende Teil auskommentiert ist.
+  # boxplots = ggplot(data, aes(x = !!sym(variable2), 
+  #                            y = !!sym(variable1), 
+  #                            fill = !!sym(colorVar))) +
+  #  geom_boxplot() +
+  #  labs(title = paste("Boxplots for", variable1, "and", variable2),
+  #       x = variable2, y = variable1, 
+  #       fill = colorVar)
   
   # Scatterplot mit linearen Regressionsgeraden
   regression_model = lm(data[[variable2]] ~ data[[variable1]], data = data)
@@ -272,4 +277,3 @@ extraMultivariate = function(data, variable1, variable2, colorVar) {
 
 # Test
 # extraMultivariate(titanic, "Age", "Fare", "Survived")
-

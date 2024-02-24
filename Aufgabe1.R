@@ -1,14 +1,17 @@
 # ************************************************
 # *          Wissenschaftliches Arbeiten         *
 # *              GitHub: Gruppe 12               *
+# *                                              *
 # *             Gruppenmitglieder:               *
 # *             - Inken Veips (I-Veips)          *
 # *             - Sam Fujarski (fuwatson88)      *
 # *             - Lisa Larrass (lisalarr)        *
 # *             - Antonia Koehr (SpotAnti)       *
+# *                                              *
 # *                  Aufgabe 1                   *
 # * bearbeitet von Antonia Koehr u. Lisa Larrass *
 # ************************************************
+
 titanic = read.csv("titanic.csv")
 
 # Anreden extrahieren

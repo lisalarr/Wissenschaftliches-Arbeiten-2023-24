@@ -1,22 +1,22 @@
 # ************************************************
 # *          Wissenschaftliches Arbeiten         *
 # *              GitHub: Gruppe 12               *
+# *                                              *
 # *             Gruppenmitglieder:               *
 # *             - Inken Veips (I-Veips)          *
 # *             - Sam Fujarski (fuwatson88)      *
 # *             - Lisa Larrass (lisalarr)        *
 # *             - Antonia Koehr (SpotAnti)       *
+# *                                              *
 # *          Aufgabe 4 (Datenanalyse)            *
 # * bearbeitet von Inken Veips und Sam Fujarski  *
 # ************************************************
-
 
 # Funktionen der 2. Aufgabe laden
 source("Aufgabe2_1.R")
 
 # Bereinigten Datensatz laden
 load("titanic_new.RData")
-
 
 ######################## Deskriptive Analyse der Daten #########################
 
@@ -143,7 +143,6 @@ visualise(titanic$Deck)
 
 ########################## Bivariater Zusammenhang  ############################
 
-
 # -->  Ticketpreis und Klasse der Reisenden
 
 # Da Ticketpreis metrisch, aber Klasse nicht dichotom ist, kann die Funktion 
@@ -243,7 +242,6 @@ extraMultivariate(titanic, "Age", "Fare", "Survived")
 # den Verstorbenen gleich ist. Dies deckt sich mit der vorhherigen Analyse.
 # Die lineare Regression zeigt, dass das Alter und der Ticketpreis in keinem 
 # Zusammenhang zueinander steht.
-# Der Boxplot bestaetigt die vorherige Analyse fuer das Alter.
 
 extraMultivariate(titanic, "Fare", "Age", "Survived")
 
@@ -259,4 +257,3 @@ katBiStat(titanic$Survived, titanic$Deck)
 # ueber 10% verstorben. Kein klarer Zusammenhang zwischen Ueberleben und Decks 
 # ist zu beobachten. Das koennte daran liegen, dass die Klassen ueber viele Decks
 # verteilt sind. 
-
