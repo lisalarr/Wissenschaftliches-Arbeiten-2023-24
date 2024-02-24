@@ -231,7 +231,7 @@ extraMultivariate(titanic, "Fare", "Age", "Survived")
 # Das Histogramm fuer Tickpreis bzw. der Boxplot fuer den Ticketpreis in 
 # Zusammenhang mit dem Überleben bestaetigt ebenfalls die vorherige Analyse.
 
-### Deck
+### Deck im Zusammenhang mit Ueberleben
 
 katBiStat(titanic$Survived, titanic$Deck)
 
