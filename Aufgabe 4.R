@@ -111,7 +111,7 @@ extraUnivariate(titanic,"Fare")
 # klaren disjunkten Preisklassen aufdecken lassen, obwohl sich die Passagiere 
 # durch den Kauf von Tickets fuer verschiedenen Klassen bereits fuer eine 
 # Preiskategorie entschieden haben. Die Ticketpreise untescheiden sich somit 
-# innerhalb derselben Klasse.
+# innerhalb derselben Klasse. -> weitere Analyse bei "bivariater Zusammenhang"
 
 
 ### Zustiegshafen
