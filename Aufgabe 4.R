@@ -7,6 +7,7 @@
 # *             - Lisa Larrass (lisalarr)        *
 # *             - Antonia Koehr (SpotAnti)       *
 # *          Aufgabe 4 (Datenanalyse)            *
+# * bearbeitet von Inken Veips und Sam Fujarski  *
 # ************************************************
 
 
