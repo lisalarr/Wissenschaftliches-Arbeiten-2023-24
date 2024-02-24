@@ -102,6 +102,11 @@ metrStat(titanic$Fare)
 
 extraUnivariate(titanic,"Fare")
 # Die Grafik stellt die Verteilung der Daten noch einmal deutlicher dar.
+# Außerdem laesst die Grafik erkennen, dass sich bei den Ticketpreisen keine 
+# klaren disjunkten Preisklassen aufdecken lassen, obwohl sich die Passagiere 
+# durch den Kauf von Tickets fuer verschiedenen Klassen bereits fuer eine 
+# Preiskategorie entschieden haben. Die Ticketpreise untescheiden sich somit 
+# innerhalb derselben Klasse.
 
 
 ### Zustiegshafen
@@ -215,6 +220,14 @@ metrBiStat(titanic$Fare, titanic$Survived)
 # Klasse und Ueberleben zusammen. 
 
 # Der signifikante t-Test bestaetigt die deskriptive Beobachtung. 
+
+# Innerhalb der Diskussion haben wir festgestellt, dass diese Anaylse inhaltlich 
+# einwenig irrefuehrend ist, da die Anaylse den Anschein erweckt, als haetten 
+# Passagiere fuer das Ueberleben mehr Geld gezahlt. Deshalb sollte diese Analyse
+# eher nicht weiter Anwendung finden. Zudem spiegelt die die Analyse der 
+# Verstorbenen/ Überlebenden in Bezug auf die Klasse der Reisenden ähnliche 
+# interpretatorische Ergebnisse wider. 
+
 
 ### Ticketpreis und Alter im Zusammenhang mit Ueberleben
 
