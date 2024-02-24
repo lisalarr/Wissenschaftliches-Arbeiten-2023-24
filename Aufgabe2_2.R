@@ -7,6 +7,7 @@
 # *             - Lisa Larrass (lisalarr)        *
 # *             - Antonia Koehr (SpotAnti)       *
 # *         Aufgabe 2 (Helfer Funktionen)        *
+# *               bearbeitet von allen           *
 # ************************************************
 
 # cramersV - Berechnet das Cramers V fuer zwei kategoriale Variablen

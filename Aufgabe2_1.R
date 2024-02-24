@@ -7,6 +7,7 @@
 # *             - Lisa Larrass (lisalarr)        *
 # *             - Antonia Koehr (SpotAnti)       *
 # *          Aufgabe 2 (Main Funktionen)         *
+# *               bearbeitet von allen           *
 # ************************************************
 
 library(moments) # fuer die Berechnung von Momenten und deskriptiven Statistiken

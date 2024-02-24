@@ -7,7 +7,7 @@
 # *             - Lisa Larrass (lisalarr)        *
 # *             - Antonia Koehr (SpotAnti)       *
 # *                  Aufgabe 1                   *
-# *        Antonia Koehr und Lisa Larrass        *
+# * bearbeitet von Antonia Koehr u. Lisa Larrass *
 # ************************************************
 titanic = read.csv("titanic.csv")
 
